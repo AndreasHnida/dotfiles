@@ -52,7 +52,7 @@ style = "bright-black"
 command = "git rev-parse --abbrev-ref HEAD"
 when = "! jj root >/dev/null 2>&1 && git rev-parse --is-inside-work-tree >/dev/null 2>&1"
 format = "[$symbol($output)](bold blue) "
-symbol = "  "
+symbol = "   "
 
 [cmd_duration]
 format = "[$duration]($style) "
