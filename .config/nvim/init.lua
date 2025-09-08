@@ -67,6 +67,8 @@ vim.o.confirm = true
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
 
+-- vim.lsp.set_log_level 'debug'
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -549,19 +551,19 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
 
         -- Vue LSP (Volar) v3 - requires vtsls for TypeScript support
-        ['vue_ls'] = {
-          settings = {
-            vue = {
-              inlayHints = {
-                destructuredProps = { enabled = true },
-                inlineHandlerLoading = { enabled = true },
-                missingProps = { enabled = true },
-                optionsWrapper = { enabled = true },
-                vBindShorthand = { enabled = true },
-              },
-            },
-          },
-        },
+        -- ['vue_ls'] = {
+        --   settings = {
+        --     vue = {
+        --       inlayHints = {
+        --         destructuredProps = { enabled = true },
+        --         inlineHandlerLoading = { enabled = true },
+        --         missingProps = { enabled = true },
+        --         optionsWrapper = { enabled = true },
+        --         vBindShorthand = { enabled = true },
+        --       },
+        --     },
+        --   },
+        -- },
 
         -- vtsls replaces ts_ls/typescript-language-server for Vue 3 support
         lua_ls = {
@@ -597,8 +599,8 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'prettier', -- JavaScript/TypeScript/Vue formatter
-        'vtsls', -- TypeScript language server for Vue support
-        'vue-language-server', -- Vue language server
+        -- 'vtsls', -- TypeScript language server for Vue support
+        -- 'vue-language-server', -- Vue language server
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -613,10 +615,10 @@ require('lazy').setup({
             end
             local server = servers[server_name] or {}
             -- Map Mason package names to lspconfig server names
-            local server_mappings = {
-              ['vue-language-server'] = 'vue_ls',
-              -- vtsls doesn't need mapping as Mason name matches LSPconfig name
-            }
+            -- local server_mappings = {
+            --   ['vue-language-server'] = 'vue_ls',
+            --   -- vtsls doesn't need mapping as Mason name matches LSPconfig name
+            -- }
             local lspconfig_name = server_mappings[server_name] or server_name
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
@@ -627,9 +629,9 @@ require('lazy').setup({
         },
       }
       -- Explicitly setup vtsls with Vue support since vue_ls requires it
-      local vtsls_config = servers.vtsls or {}
-      vtsls_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, vtsls_config.capabilities or {})
-      require('lspconfig').vtsls.setup(vtsls_config)
+      -- local vtsls_config = servers.vtsls or {}
+      -- vtsls_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, vtsls_config.capabilities or {})
+      -- require('lspconfig').vtsls.setup(vtsls_config)
     end,
   },
   { -- Autoformat
