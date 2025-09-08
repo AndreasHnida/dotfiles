@@ -1,7 +1,8 @@
-format = """
+format = """    $directory $character""" 
+
+right_format = """
 $username\
 $hostname\
-$directory\
 $git_state\
 $git_status\
 ${custom.gitonly}\
@@ -9,17 +10,17 @@ ${custom.jj}\
 $cmd_duration\
 $line_break\
 $python\
-$character"""
+"""
 
 palette = "custom_colors"
 
 [palettes.custom_colors]
-primary = "White"
+primary = "Bright-White"
 secondary = "Blue"
 accent = "Bright-Green"
 
 [character]
-success_symbol = "[](bold accent)"
+success_symbol = "[>](bold primary)"
 error_symbol = "[x](bold red)"
 vimcmd_symbol = "[<](bold green)"
 
@@ -29,7 +30,7 @@ style = "primary"
 read_only = " 󰌾"
 home_symbol = "~"
 truncation_length = 0  # Zeigt vollen Pfad, setze auf 3 für kürzeren Pfad
-truncate_to_repo = false  # false = voller Pfad, true = nur ab git repo root
+truncate_to_repo = true  # false = voller Pfad, true = nur ab git repo root
 
 [git_branch]
 disabled = true

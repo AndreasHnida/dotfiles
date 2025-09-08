@@ -1,119 +1,119 @@
--- plugins/typescript-tools.lua
+-- -- plugins/typescript-tools.lua
 return {
-  'pmizio/typescript-tools.nvim',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    'neovim/nvim-lspconfig',
-  },
-  ft = { 'javascript', 'typescript', 'vue', 'typescriptreact', 'javascriptreact' },
-  opts = {},
-  config = function()
-    local api = require 'typescript-tools.api'
-    require('typescript-tools').setup {
-      on_attach = function(client, bufnr)
-        -- Formatting deaktivieren (falls du Prettier/Eslint nutzt)
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-
-        -- Optional: Keymaps für TypeScript Tools Commands
-        local opts = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set('n', '<leader>tr', ':TSToolsRestart<CR>', opts)
-        vim.keymap.set('n', '<leader>to', ':TSToolsOrganizeImports<CR>', opts)
-        vim.keymap.set('n', '<leader>ta', ':TSToolsAddMissingImports<CR>', opts)
-        vim.keymap.set('n', '<leader>tf', ':TSToolsFixAll<CR>', opts)
-        vim.keymap.set('n', '<leader>tu', ':TSToolsRemoveUnused<CR>', opts)
-      end,
-
-      handlers = {
-        -- Bessere Fehleranzeige mit Source
-        ['textDocument/publishDiagnostics'] = api.filter_diagnostics {
-          -- Ignoriere bestimmte Fehler wenn gewünscht
-          -- 80001, -- File is a CommonJS module
-        },
-      },
-
-      settings = {
-        -- Explizite Server-Optionen
-        separate_diagnostic_server = true,
-        publish_diagnostic_on = 'change', -- oder "insert_leave" für Performance
-
-        -- Code Actions exponieren
-        expose_as_code_action = {
-          'fix_all',
-          'add_missing_imports',
-          'remove_unused',
-          'remove_unused_imports',
-          'organize_imports',
-          'reload_projects', -- Wichtig für tsconfig reload
-        },
-
-        -- TSServer Plugins für Vue/Nuxt
-        tsserver_plugins = {
-          '@vue/typescript-plugin',
-          -- Falls du Styled Components nutzt:
-          -- '@styled/typescript-styled-plugin',
-        },
-
-        -- File Preferences
-        tsserver_file_preferences = {
-          includeInlayParameterNameHints = 'all',
-          includeCompletionsForModuleExports = true,
-          quotePreference = 'single', -- oder "double"
-          importModuleSpecifierPreference = 'shortest',
-          includePackageJsonAutoImports = 'on',
-          providePrefixAndSuffixTextForRename = true,
-        },
-
-        -- Format Optionen (falls du doch TSServer formatting nutzen willst)
-        tsserver_format_options = {
-          allowIncompleteCompletions = false,
-          allowRenameOfImportPath = true,
-        },
-
-        -- JSX Support
-        jsx_close_tag = {
-          enable = true,
-          filetypes = { 'javascriptreact', 'typescriptreact' },
-        },
-
-        -- Completion settings
-        complete_function_calls = true,
-        include_completions_with_insert_text = true,
-
-        -- Code Lens (inline hints)
-        code_lens = 'off', -- oder "all" wenn du inline hints willst
-
-        -- Disable bestimmte Diagnostics für .vue files wenn nötig
-        disable_member_code_lens = true,
-      },
-
-      -- Filetypes
-      filetypes = {
-        'javascript',
-        'javascriptreact',
-        'typescript',
-        'typescriptreact',
-        'vue',
-      },
-
-      -- Root Pattern für tsconfig.json
-      root_dir = function(fname)
-        local util = require 'lspconfig.util'
-        -- Sucht in dieser Reihenfolge
-        return util.root_pattern 'tsconfig.json'(fname)
-          or util.root_pattern('package.json', 'jsconfig.json')(fname)
-          or util.root_pattern '.git'(fname)
-          or vim.fn.getcwd()
-      end,
-    }
-
-    -- Auto-Commands für besseres Vue handling
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      pattern = { '*.ts', '*.tsx', '*.js', '*.jsx', '*.vue' },
-      callback = function()
-        -- Optional: Auto-organize imports on save
-        -- vim.cmd('TSToolsOrganizeImports')
-      end,
-    })
-  end,
+	--   'pmizio/typescript-tools.nvim',
+	--   dependencies = {
+	--     'nvim-lua/plenary.nvim',
+	--     'neovim/nvim-lspconfig',
+	--   },
+	--   ft = { 'javascript', 'typescript', 'vue', 'typescriptreact', 'javascriptreact' },
+	--   opts = {},
+	--   config = function()
+	--     local api = require 'typescript-tools.api'
+	--     require('typescript-tools').setup {
+	--       on_attach = function(client, bufnr)
+	--         -- Formatting deaktivieren (falls du Prettier/Eslint nutzt)
+	--         client.server_capabilities.documentFormattingProvider = false
+	--         client.server_capabilities.documentRangeFormattingProvider = false
+	--
+	--         -- Optional: Keymaps für TypeScript Tools Commands
+	--         local opts = { noremap = true, silent = true, buffer = bufnr }
+	--         vim.keymap.set('n', '<leader>tr', ':TSToolsRestart<CR>', opts)
+	--         vim.keymap.set('n', '<leader>to', ':TSToolsOrganizeImports<CR>', opts)
+	--         vim.keymap.set('n', '<leader>ta', ':TSToolsAddMissingImports<CR>', opts)
+	--         vim.keymap.set('n', '<leader>tf', ':TSToolsFixAll<CR>', opts)
+	--         vim.keymap.set('n', '<leader>tu', ':TSToolsRemoveUnused<CR>', opts)
+	--       end,
+	--
+	--       handlers = {
+	--         -- Bessere Fehleranzeige mit Source
+	--         ['textDocument/publishDiagnostics'] = api.filter_diagnostics {
+	--           -- Ignoriere bestimmte Fehler wenn gewünscht
+	--           -- 80001, -- File is a CommonJS module
+	--         },
+	--       },
+	--
+	--       settings = {
+	--         -- Explizite Server-Optionen
+	--         separate_diagnostic_server = true,
+	--         publish_diagnostic_on = 'change', -- oder "insert_leave" für Performance
+	--
+	--         -- Code Actions exponieren
+	--         expose_as_code_action = {
+	--           'fix_all',
+	--           'add_missing_imports',
+	--           'remove_unused',
+	--           'remove_unused_imports',
+	--           'organize_imports',
+	--           'reload_projects', -- Wichtig für tsconfig reload
+	--         },
+	--
+	--         -- TSServer Plugins für Vue/Nuxt
+	--         tsserver_plugins = {
+	--           '@vue/typescript-plugin',
+	--           -- Falls du Styled Components nutzt:
+	--           -- '@styled/typescript-styled-plugin',
+	--         },
+	--
+	--         -- File Preferences
+	--         tsserver_file_preferences = {
+	--           includeInlayParameterNameHints = 'all',
+	--           includeCompletionsForModuleExports = true,
+	--           quotePreference = 'single', -- oder "double"
+	--           importModuleSpecifierPreference = 'shortest',
+	--           includePackageJsonAutoImports = 'on',
+	--           providePrefixAndSuffixTextForRename = true,
+	--         },
+	--
+	--         -- Format Optionen (falls du doch TSServer formatting nutzen willst)
+	--         tsserver_format_options = {
+	--           allowIncompleteCompletions = false,
+	--           allowRenameOfImportPath = true,
+	--         },
+	--
+	--         -- JSX Support
+	--         jsx_close_tag = {
+	--           enable = true,
+	--           filetypes = { 'javascriptreact', 'typescriptreact' },
+	--         },
+	--
+	--         -- Completion settings
+	--         complete_function_calls = true,
+	--         include_completions_with_insert_text = true,
+	--
+	--         -- Code Lens (inline hints)
+	--         code_lens = 'off', -- oder "all" wenn du inline hints willst
+	--
+	--         -- Disable bestimmte Diagnostics für .vue files wenn nötig
+	--         disable_member_code_lens = true,
+	--       },
+	--
+	--       -- Filetypes
+	--       filetypes = {
+	--         'javascript',
+	--         'javascriptreact',
+	--         'typescript',
+	--         'typescriptreact',
+	--         'vue',
+	--       },
+	--
+	--       -- Root Pattern für tsconfig.json
+	--       root_dir = function(fname)
+	--         local util = require 'lspconfig.util'
+	--         -- Sucht in dieser Reihenfolge
+	--         return util.root_pattern 'tsconfig.json'(fname)
+	--           or util.root_pattern('package.json', 'jsconfig.json')(fname)
+	--           or util.root_pattern '.git'(fname)
+	--           or vim.fn.getcwd()
+	--       end,
+	--     }
+	--
+	--     -- Auto-Commands für besseres Vue handling
+	--     vim.api.nvim_create_autocmd('BufWritePre', {
+	--       pattern = { '*.ts', '*.tsx', '*.js', '*.jsx', '*.vue' },
+	--       callback = function()
+	--         -- Optional: Auto-organize imports on save
+	--         -- vim.cmd('TSToolsOrganizeImports')
+	--       end,
+	--     })
+	--   end,
 }
