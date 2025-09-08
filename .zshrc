@@ -157,23 +157,23 @@ eval "$(starship init zsh)"
 
 # fzf 
 #
-# # fd als Standardquelle für fzf (Dateien in /home und /etc)
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git /home /etc'
-# Für Ctrl-T (Dateien in die Kommandozeile einfügen)
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# Vorschau im Ctrl-T Menü: Zeigt erste Zeilen der Datei
-export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :50 {}' --bind 'ctrl-/:toggle-preview'"
-# Verbessert fzf für Kommando-History
-export FZF_CTRL_R_OPTS="--sort --exact --tac"
-# Suche in Dateien nach Inhalt und öffne mit $EDITOR
-fzz() {
-  RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git' /home /etc"
-  local file
-  file=$(FZF_DEFAULT_COMMAND="$RG_PREFIX \"$1\"" \
-    fzf --ansi \
-        --delimiter : \
-        --preview 'bat --style=numbers --color=always --line-range :50 {1}' \
-        --bind 'ctrl-/:toggle-preview' \
-        --bind 'enter:become($EDITOR {1} +{2})') || return
-}
+# # # fd als Standardquelle für fzf (Dateien in /home und /etc)
+# export FZF_DEFAULT_COMMAND='find --type f --hidden --follow --exclude .git /home /etc'
+# # Für Ctrl-T (Dateien in die Kommandozeile einfügen)
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# # Vorschau im Ctrl-T Menü: Zeigt erste Zeilen der Datei
+# export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :50 {}' --bind 'ctrl-/:toggle-preview'"
+# # Verbessert fzf für Kommando-History
+# export FZF_CTRL_R_OPTS="--sort --exact --tac"
+# # Suche in Dateien nach Inhalt und öffne mit $EDITOR
+# fzz() {
+#   RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git' /home /etc"
+#   local file
+#   file=$(FZF_DEFAULT_COMMAND="$RG_PREFIX \"$1\"" \
+#     fzf --ansi \
+#         --delimiter : \
+#         --preview 'bat --style=numbers --color=always --line-range :50 {1}' \
+#         --bind 'ctrl-/:toggle-preview' \
+#         --bind 'enter:become($EDITOR {1} +{2})') || return
+# }
 
