@@ -23,8 +23,12 @@ error_symbol = "[x](bold red)"
 vimcmd_symbol = "[<](bold green)"
 
 [directory]
+format = "[$path]($style) "
 style = "primary"
 read_only = " 󰌾"
+home_symbol = "~"
+truncation_length = 0  # Zeigt vollen Pfad, setze auf 3 für kürzeren Pfad
+truncate_to_repo = false  # false = voller Pfad, true = nur ab git repo root
 
 [git_branch]
 disabled = true
