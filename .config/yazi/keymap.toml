@@ -1,0 +1,4 @@
+[[mgr.prepend_keymap]]
+on   = "<->"
+run  = "leave"
+desc = "move back the oil way"
