@@ -1,4 +1,7 @@
-format = """    $directory $character""" 
+format = """
+    $directory $character
+$line_break
+$line_break""" 
 
 right_format = """
 $username\

@@ -155,6 +155,10 @@ export PATH="$HOME/bin:$PATH"
 
 eval "$(starship init zsh)"
 
+# Add blank line before command output
+preexec() {
+    echo
+}
 # fzf 
 #
 # # # fd als Standardquelle für fzf (Dateien in /home und /etc)
