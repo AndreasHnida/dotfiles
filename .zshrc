@@ -152,6 +152,7 @@ eval "$(dircolors -b)"
 export LS_COLORS='di=1;34;40:' # Blue bold directories on black background
 #
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.bin:$PATH"
 
 eval "$(starship init zsh)"
 

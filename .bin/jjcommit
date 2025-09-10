@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# jjcommit - Jujutsu commit helper script
+# Usage: jjcommit "commit message"
+
+set -e  # Exit on any command failure
+
+# Check if commit message is provided
+if [ $# -eq 0 ]; then
+    echo "Error: No commit message provided"
+    echo "Usage: jjcommit \"commit message\""
+    exit 1
+fi
+
+# Get the commit message (all arguments combined)
+COMMIT_MSG="$*"
+
+echo "📝 Creating commit: $COMMIT_MSG"
+jj commit -m "$COMMIT_MSG"
+
+echo "🔖 Setting main bookmark to current revision"
+jj bookmark set main -r @
+
+echo "🚀 Pushing to git remote"
+jj git push
+
+echo "✅ Done! Commit created, main bookmark updated, and pushed to remote"
