@@ -21,7 +21,6 @@
 =====================================================================
 --
 --]]
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -67,6 +66,7 @@ vim.o.confirm = true
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
 
+-- vim.notify = require('notify')
 -- vim.lsp.set_log_level 'debug'
 
 -- [[ Basic Keymaps ]]
@@ -118,7 +118,6 @@ vim.keymap.set('n', '<leader><tab>', '<C-^>', { desc = 'Switch to last buffer' }
 -- Movement
 vim.keymap.set('n', 'J', '5j')
 vim.keymap.set('n', 'K', '5k')
-
 -- Move lines up/down
 vim.api.nvim_set_keymap('n', '<S-A-j>', ':m .+1<CR>==', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<S-A-k>', ':m .-2<CR>==', { noremap = true, silent = true })
@@ -129,6 +128,9 @@ vim.api.nvim_set_keymap('n', '<S-A-up>', ':m .-2<CR>==', { noremap = true, silen
 vim.api.nvim_set_keymap('v', '<S-A-down>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<S-A-up>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
+-- Autosession Persistance
+
+vim.keymap.set('n', '<leader>ls', "<cmd>lua require('persistence').load()<cr>", { desc = "[L]oad last [s]ession" })
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -348,7 +350,7 @@ require('lazy').setup({
 			vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
 			vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
 			vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-			vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+			vim.keymap.set('n', '<C-A-p>', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[ ] Find existing buffers' })
 			vim.keymap.set('n', '<leader>sc', builtin.git_bcommits, { desc = '[C] Commits' })
 
@@ -790,41 +792,6 @@ require('lazy').setup({
 		},
 	},
 
-	{ -- You can easily change to a different colorscheme.
-		-- Change the name of the colorscheme plugin below, and then
-		-- change the command in the config to whatever the name of that colorscheme is.
-		--
-		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-		'folke/tokyonight.nvim',
-		priority = 1000, -- Make sure to load this before all the other start plugins.
-		config = function()
-			---@diagnostic disable-next-line: missing-fields
-			require('tokyonight').setup {
-				transparent = true,
-				styles = {
-					comments = { italic = false }, -- Disable italics in comments
-					sidebars = 'transparent',
-					floats = 'transparent',
-				},
-				on_colors = function(c)
-					-- Because lualine broke stuff with the latest commit
-					c.bg_statusline = c.none
-				end,
-				on_highlights = function(hl, c)
-					-- TabLineFill is currently set to black
-					hl.TabLineFill = {
-						bg = c.none,
-					}
-				end,
-			}
-
-			-- Load the colorscheme here.
-			-- Like many other themes, this one has different styles, and you could load
-			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-			vim.cmd.colorscheme 'tokyonight-night'
-		end,
-	},
-
 	-- Highlight todo, notes, etc in comments
 	{ 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
@@ -870,6 +837,9 @@ require('lazy').setup({
 			-- - sr)'  - [S]urround [R]eplace [)] [']
 
 			require('mini.surround').setup()
+			require('mini.pick').setup()
+
+			vim.keymap.set('n', '<C-S-p>', '<cmd>lua Mini.Pick.registry.oldfiles()<cr>', { desc = 'recent files' })
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,
 			--  and try some other statusline plugin
