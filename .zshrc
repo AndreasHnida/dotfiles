@@ -106,9 +106,8 @@ source $ZSH/oh-my-zsh.sh
  alias ohmyzsh="nvim ~/.oh-my-zsh"
  alias sjjconfig="nvim ~/.config/starship-jj/starship-jj.toml"
 #
-alias nvlazy='NVIM_APPNAME=nvim-lazy nvim'
-alias nvchad='NVIM_APPNAME=nvim-nvchad nvim'
 alias nvnew='NVIM_APPNAME=nvim nvim'
+alias nvs='NVIM_APPNAME=nvim-snacks nvim'
 
 alias sudo nvlazy='sudo NVIM_APPNAME=nvim-lazy nvim'
 alias sudo nvchad='sudo NVIM_APPNAME=nvim-nvchad nvim'
