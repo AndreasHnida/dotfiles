@@ -129,8 +129,12 @@ vim.api.nvim_set_keymap('v', '<S-A-down>', ":m '>+1<CR>gv=gv", { noremap = true,
 vim.api.nvim_set_keymap('v', '<S-A-up>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
 -- Autosession Persistance
-
 vim.keymap.set('n', '<leader>ls', "<cmd>lua require('persistence').load()<cr>", { desc = '[L]oad last [s]ession' })
+--
+-- visual vertical block mode remapped
+vim.keymap.set('n', '<leader>v', '<C-v>', { noremap = true })
+vim.keymap.set('v', '<leader>v', '<C-v>', { noremap = true })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
