@@ -160,25 +160,24 @@ eval "$(starship init zsh)"
 preexec() {
     echo
 }
-# fzf 
-#
-# # # fd als Standardquelle für fzf (Dateien in /home und /etc)
-# export FZF_DEFAULT_COMMAND='find --type f --hidden --follow --exclude .git /home /etc'
-# # Für Ctrl-T (Dateien in die Kommandozeile einfügen)
-# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# # Vorschau im Ctrl-T Menü: Zeigt erste Zeilen der Datei
-# export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :50 {}' --bind 'ctrl-/:toggle-preview'"
-# # Verbessert fzf für Kommando-History
-# export FZF_CTRL_R_OPTS="--sort --exact --tac"
-# # Suche in Dateien nach Inhalt und öffne mit $EDITOR
-# fzz() {
-#   RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git' /home /etc"
-#   local file
-#   file=$(FZF_DEFAULT_COMMAND="$RG_PREFIX \"$1\"" \
-#     fzf --ansi \
-#         --delimiter : \
-#         --preview 'bat --style=numbers --color=always --line-range :50 {1}' \
-#         --bind 'ctrl-/:toggle-preview' \
-#         --bind 'enter:become($EDITOR {1} +{2})') || return
-# }
+# fzf configuration using fd (fdfind)
+# fd is a modern, fast alternative to find
+export FZF_DEFAULT_COMMAND='fdfind --type f --hidden --follow --exclude .git'
+# For Ctrl-T (insert files into command line)
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# Preview in Ctrl-T menu: shows first lines of file
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :50 {} 2>/dev/null || cat {}' --bind 'ctrl-/:toggle-preview'"
+# Improve fzf for command history
+export FZF_CTRL_R_OPTS="--sort --exact --tac"
+# Search file contents and open with $EDITOR
+fzz() {
+  RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git'"
+  local file
+  file=$(FZF_DEFAULT_COMMAND="$RG_PREFIX \"$1\"" \
+    fzf --ansi \
+        --delimiter : \
+        --preview 'bat --style=numbers --color=always --line-range :50 {1} 2>/dev/null || cat {1}' \
+        --bind 'ctrl-/:toggle-preview' \
+        --bind 'enter:become($EDITOR {1} +{2})') || return
+}
 
