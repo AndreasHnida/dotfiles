@@ -181,3 +181,7 @@ fzz() {
         --bind 'enter:become($EDITOR {1} +{2})') || return
 }
 
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
