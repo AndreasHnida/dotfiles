@@ -113,6 +113,7 @@ alias sudo nvlazy='sudo NVIM_APPNAME=nvim-lazy nvim'
 alias sudo nvchad='sudo NVIM_APPNAME=nvim-nvchad nvim'
 
 alias yaziconfig='nvim ~/.config/yazi/yazi.toml'
+alias ls='ls --group-directories-first --color=auto'
 
 ZSH_HIGHLIGHT_STYLES[path]=fg=white
 ZSH_HIGHLIGHT_STYLES[path_prefix]=fg=white

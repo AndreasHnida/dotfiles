@@ -25,7 +25,7 @@ secondary = "Blue"
 accent = "Bright-Green"
 
 [character]
-success_symbol = "[>](bold secondary)"
+success_symbol = "[>](bold white)"
 error_symbol = "[x](bold red)"
 vimcmd_symbol = "[<](bold green)"
 
