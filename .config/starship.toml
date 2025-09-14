@@ -20,7 +20,7 @@ add_newline = true
 palette = "custom_colors"
 
 [palettes.custom_colors]
-primary = "Bright-Green"
+primary = "Bright-Blue"
 secondary = "Blue"
 accent = "Bright-Green"
 
