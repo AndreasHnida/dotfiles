@@ -188,3 +188,9 @@ fzz() {
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
+
+if [[ -n "$TMUX" ]]; then
+    precmd() {
+        printf '\n%.0s' {1}
+    }
+fi
