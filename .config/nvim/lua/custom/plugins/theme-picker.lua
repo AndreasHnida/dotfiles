@@ -17,8 +17,20 @@ return {
           colorscheme = 'tokyonight-night',
         },
         {
-          name = 'Tokyo Night (Storm)',
-          colorscheme = 'tokyonight-storm',
+          name = 'Tokyo Night (Night)',
+          colorscheme = 'tokyonight-night',
+        },
+        {
+          name = 'Rose Pine',
+          colorscheme = 'rose-pine',
+        },
+        {
+          name = 'Nord',
+          colorscheme = 'nord',
+        },
+        {
+          name = 'Nord Vivid',
+          colorscheme = 'nord-vivid',
         },
         {
           name = 'One Dark (Dark)',
@@ -41,5 +53,6 @@ return {
         -- Add more themes
       },
     },
+    vim.keymap.set('n', '<leader>tp', '<cmd>:lua require("theme-picker").open_theme_picker()<cr>', { desc = 'Open theme picker' }),
   },
 }

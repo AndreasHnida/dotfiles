@@ -56,13 +56,13 @@ return {
     end,
   },
   {
-    'AndreasHnida/nord-vivid.nvim',
+    dir = '/home/user/_dev/fun/nord-vivid.nvim',
     priority = 1000,
     config = function()
-      vim.g.nord_disable_background = true
-      vim.g.nord_italic = false
-      vim.g.nord_cursorline_transparent = true
-      vim.g.nord_enable_sidebar_background = false
+      vim.g.nord_vivid_disable_background = true
+      vim.g.nord_vivid_italic = false
+      vim.g.nord_vivid_cursorline_transparent = true
+      vim.g.nord_vivid_enable_sidebar_background = false
       require('nord-vivid').set()
     end,
   },
