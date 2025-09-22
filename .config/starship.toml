@@ -1,7 +1,6 @@
 format = """
-    $directory $character
-$line_break
-$line_break""" 
+    $directory$character
+""" 
 
 right_format = """
 $username\
@@ -20,8 +19,8 @@ add_newline = true
 palette = "custom_colors"
 
 [palettes.custom_colors]
-primary = "Bright-Blue"
-secondary = "Blue"
+primary = "49"
+secondary = "Green"
 accent = "Bright-Green"
 
 [character]

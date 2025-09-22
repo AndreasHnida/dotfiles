@@ -13,6 +13,14 @@ return {
       },
       themes = {
         {
+          name = 'Ayu Dark',
+          colorscheme = 'ayu-dark',
+        },
+        {
+          name = 'Theme Sync',
+          colorscheme = 'theme-sync',
+        },
+        {
           name = 'Tokyo Night (Night)',
           colorscheme = 'tokyonight-night',
         },
@@ -27,6 +35,10 @@ return {
         {
           name = 'Nord',
           colorscheme = 'nord',
+        },
+        {
+          name = 'Nord Custom',
+          colorscheme = 'nord-custom',
         },
         {
           name = 'Nord Vivid',

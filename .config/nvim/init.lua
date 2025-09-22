@@ -25,7 +25,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.g.have_nerd_font = true
-
+vim.opt.termguicolors = true
 vim.o.number = true
 vim.o.relativenumber = true
 
@@ -53,7 +53,7 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 
 vim.o.list = true
-vim.opt.listchars = { tab = '| ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = ': ', trail = '·', nbsp = '␣' }
 
 vim.o.inccommand = 'split'
 
@@ -808,30 +808,6 @@ require('lazy').setup({
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
-      local function set_transparent_highlights()
-        local hl_groups = {
-          'MiniStatuslineModeNormal',
-          'MiniStatuslineModeInsert',
-          'MiniStatuslineModeVisual',
-          'MiniStatuslineModeReplace',
-          'MiniStatuslineModeCommand',
-          'MiniStatuslineModeOther',
-          'MiniStatuslineFilename',
-          'MiniStatuslineFileinfo',
-          'MiniStatuslineDevinfo',
-          'MiniStatuslineInactive',
-          'StatusLine',
-          'StatusLineNC',
-        }
-
-        for _, group in ipairs(hl_groups) do
-          local current_hl = vim.api.nvim_get_hl(0, { name = group })
-          if current_hl then
-            current_hl.bg = nil -- Remove background
-            vim.api.nvim_set_hl(0, group, current_hl)
-          end
-        end
-      end
       -- Better Around/Inside textobjects
       --
       -- Examples:
@@ -853,25 +829,18 @@ require('lazy').setup({
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
-      -- Apply transparency immediately
-      set_transparent_highlights()
-      -- Reapply transparency when colorscheme changes
-      vim.api.nvim_create_autocmd('ColorScheme', {
-        callback = function()
-          -- Small delay to let the colorscheme fully load
-          vim.defer_fn(set_transparent_highlights, 10)
-        end,
-      })
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
+      -- local statusline = require 'mini.statusline'
+      -- -- set use_icons to true if you have a Nerd Font
+      -- statusline.setup { use_icons = vim.g.have_nerd_font }
+      -- -- Apply transparency immediately
+      -- -- Reapply transparency when colorscheme changes
+      -- -- You can configure sections in the statusline by overriding their
+      -- -- default behavior. For example, here we set the section for
+      -- -- cursor location to LINE:COLUMN
+      -- ---@diagnostic disable-next-line: duplicate-set-field
+      -- statusline.section_location = function()
+      --   return '%2l:%-2v'
+      -- end
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
@@ -978,6 +947,7 @@ require('lazy').setup({
 
 -- Load hot-reload after lazy.nvim setup
 require 'custom.config.hot-reload'
+require 'custom.config.autosave'
 
 -- open config files
 vim.api.nvim_create_user_command('ConfigMe', function()

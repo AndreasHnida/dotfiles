@@ -24,7 +24,22 @@ return {
       }
     end,
   },
-
+  {
+    dir = '/home/user/_dev/fun/ayu-dark.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('ayu-dark').setup()
+    end,
+  },
+  {
+    dir = '/home/user/_dev/fun/nord-custom.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('nord-custom').setup()
+    end,
+  },
   {
     'xStormyy/bearded-theme.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
