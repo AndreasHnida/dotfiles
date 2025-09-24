@@ -117,7 +117,7 @@ alias sudo nvchad='sudo NVIM_APPNAME=nvim-nvchad nvim'
 alias yaziconfig='nvim ~/.config/yazi/yazi.toml'
 alias ls='ls --group-directories-first --color=auto'
 alias ls='ls -l --group-directories-first --color=auto'
-
+alias explore='/mnt/c/Windows/explorer.exe .'
 ZSH_HIGHLIGHT_STYLES[path]=fg=white
 ZSH_HIGHLIGHT_STYLES[path_prefix]=fg=white
 

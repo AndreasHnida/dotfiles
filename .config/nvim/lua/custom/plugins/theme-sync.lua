@@ -5,6 +5,8 @@ return {
   config = function()
     require('theme-sync').setup {
       server_url = 'http://localhost:3004',
+      use_json = false,
+      auto_refresh = true,
     }
   end,
 }

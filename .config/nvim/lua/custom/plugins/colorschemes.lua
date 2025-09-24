@@ -29,7 +29,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      require('ayu-dark').setup()
+      require('nord-custom').setup()
     end,
   },
   {
