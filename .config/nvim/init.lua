@@ -745,7 +745,7 @@ require('lazy').setup({
   { -- Autocompletion
     'saghen/blink.cmp',
     event = 'VimEnter',
-    version = '1.*',
+    version = 'v0.8.0', -- Use more stable version to avoid string.buffer issues
     dependencies = {
       -- Snippet Engine
       {
@@ -784,6 +784,11 @@ require('lazy').setup({
       -- Appearance settings
       appearance = {
         nerd_font_variant = 'mono',
+      },
+
+      -- Fuzzy matching configuration - use lua fallback to avoid native module issues
+      fuzzy = {
+        use_typo_resistance = false, -- Disable to avoid string.buffer dependency
       },
 
       -- Sources configuration
