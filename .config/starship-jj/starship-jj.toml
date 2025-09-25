@@ -21,11 +21,11 @@ type = "Bookmarks"
 separator = " "
 # Color the text will be rendered in. One of Black, Red, Green, Yellow, Blue, Magenta, Cyan, White,
 # BrightBlack, BrightRed, BrightGreen, BrightYellow, BrightBlue, BrightMagenta, BrightCyan, BrightWhite
-color = "Blue"
+color.TrueColor = [0, 255, 175]
 # True RGB Color can also be used like this. Do not use both color and color.TrueColor at the same time!
 # color.TrueColor = [255, 255, 255]
 # Text background color. Can also be TrueColor.
-# bg_color = "Yellow"
+# bg_color.TrueColor = [255, 255, 85]
 # A suffix that will be printed when the given bookmark is behing the working copy.
 behind_symbol = "⇡"
 # Maximum amout of bookmarks that will be rendered.
@@ -40,8 +40,8 @@ behind_symbol = "⇡"
 type = "Commit"
 # Maximum length the commit text will be truncated to.
 max_length = 24
-color = "Blue"
-# bg_color = "Yellow"
+color.TrueColor = [0, 255, 175]
+# bg_color.TrueColor = [255, 255, 85]
 # default text if the commit description is not set
 # empty_text = "(no description set)"
 # Surround the commit text with double-quotes
@@ -55,34 +55,34 @@ separator = " "
 
 [module.conflict]
 text = "(CONFLICT)"
-color = "Red"
-# bg_color = "Yellow"
+color.TrueColor = [255, 85, 85]
+# bg_color.TrueColor = [255, 255, 85]
 
 [module.divergent]
 text = "(DIVERGENT)"
-color = "Cyan"
-# bg_color = "Yellow"
+color.TrueColor = [85, 255, 255]
+# bg_color.TrueColor = [255, 255, 85]
 
 [module.hidden]
 text = "(HIDDEN)"
-color = "Yellow"
-# bg_color = "Yellow"
+color.TrueColor = [255, 255, 85]
+# bg_color.TrueColor = [255, 255, 85]
 
 [module.immutable]
 disabled = false
 text = "(IMMUTABLE)"
-color = "Yellow"
+color.TrueColor = [255, 255, 85]
 
 [module.empty]
 disabled = false
 text = "(EMPTY)"
-color = "Blue"
+color.TrueColor = [0, 255, 175]
 
 [[module]]
 # Prints the amount of changes in the working copy
 type = "Metrics"
-color = "Blue"
-# bg_color = "Yellow"
+color.TrueColor = [0, 255, 175]
+# bg_color.TrueColor = [255, 255, 85]
 # Controls how the changes are rendered, use {added}, {removed} and {changed} to render the number of changes.
 template = "[{changed} {added} {removed}]"
 
@@ -90,20 +90,20 @@ template = "[{changed} {added} {removed}]"
 # Controlls how the number of changed files is rendered.
 # suffix = ""
 # prefix = ""
-color = "Yellow"
-# bg_color = "Yellow"
+color.TrueColor = [255, 255, 85]
+# bg_color.TrueColor = [255, 255, 85]
 
 [module.added_lines]
 # Controlls how the number of changed files is rendered.
 prefix = "+"
 # suffix = ""
-color = "Blue"
-# bg_color = "Yellow"
+color.TrueColor = [0, 255, 175]
+# bg_color.TrueColor = [255, 255, 85]
 
 [module.removed_lines]
 # Controlls how the number of removed lines is rendered.
 prefix = "-"
 # suffix = ""
-color = "Red"
-# bg_color = "Yellow"
+color.TrueColor = [255, 85, 85]
+# bg_color.TrueColor = [255, 255, 85]
 
