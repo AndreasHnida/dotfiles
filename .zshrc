@@ -118,6 +118,12 @@ alias yaziconfig='nvim ~/.config/yazi/yazi.toml'
 alias ls='ls --group-directories-first --color=auto'
 alias ls='ls -l --group-directories-first --color=auto'
 alias explore='/mnt/c/Windows/explorer.exe .'
+
+alias jjlog='jj log --reversed'
+alias jl='jjlog -r ..'
+alias jc='jjcommit'
+
+
 ZSH_HIGHLIGHT_STYLES[path]=fg=white
 ZSH_HIGHLIGHT_STYLES[path_prefix]=fg=white
 
