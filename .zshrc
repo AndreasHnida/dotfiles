@@ -106,7 +106,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
  alias zshconfig="nvim ~/.zshrc"
  alias ohmyzsh="nvim ~/.oh-my-zsh"
- alias sjjconfig="nvim ~/.config/starship-jj/starship-jj.toml"
 #
 alias nvnew='NVIM_APPNAME=nvim nvim'
 alias nvs='NVIM_APPNAME=nvim-snacks nvim'
@@ -119,12 +118,14 @@ alias ls='ls --group-directories-first --color=auto'
 alias ls='ls -l --group-directories-first --color=auto'
 alias explore='/mnt/c/Windows/explorer.exe .'
 
+alias jf='jj git fetch'
 alias jjlog='jj log --reversed'
 alias jl='jjlog -r ..'
 alias jc='jjcommit'
 alias js='jj st'
 alias jsh='jj show'
 alias jd='jj diff'
+alias jn='jj new'
 
 ZSH_HIGHLIGHT_STYLES[path]=fg=white
 ZSH_HIGHLIGHT_STYLES[path_prefix]=fg=white
