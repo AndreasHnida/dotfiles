@@ -119,6 +119,7 @@ alias ls='ls --group-directories-first --color=auto'
 alias ls='ls -l --group-directories-first --color=auto'
 alias explore='/mnt/c/Windows/explorer.exe .'
 
+alias jf='jj git fetch'
 alias jjlog='jj log --reversed'
 alias jl='jjlog -r ..'
 alias jc='jjcommit'
