@@ -122,7 +122,9 @@ alias explore='/mnt/c/Windows/explorer.exe .'
 alias jjlog='jj log --reversed'
 alias jl='jjlog -r ..'
 alias jc='jjcommit'
-
+alias js='jj st'
+alias jsh='jj show'
+alias jd='jj diff'
 
 ZSH_HIGHLIGHT_STYLES[path]=fg=white
 ZSH_HIGHLIGHT_STYLES[path_prefix]=fg=white
